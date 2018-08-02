@@ -67,7 +67,7 @@ $(document).ready(function() {
     }
     
     function generateWin() {
-        correctTally++;
+        correctPoll++;
         gameHTML = "<p class='display-4 timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='display-4'>Correct! The answer is: " + rightAns[questCount] + "</p>" + imageArr[questCount];
         $(".midSection").html(gameHTML);
         setTimeout(wait, 4000);  
