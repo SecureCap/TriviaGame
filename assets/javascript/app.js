@@ -36,7 +36,7 @@ $(document).ready(function() {
     
     $("body").on("click", ".answer", function(event){
 
-        clickSound.play();
+        
         
         
         selectAns = $(this).text();
