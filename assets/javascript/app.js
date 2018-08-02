@@ -27,7 +27,7 @@ $(document).ready(function() {
     
     $("body").on("click", ".start-button", function(event){
         event.preventDefault();  
-        
+       
         generateHTML();
     
         timerWrapper();
@@ -35,6 +35,8 @@ $(document).ready(function() {
     }); 
     
     $("body").on("click", ".answer", function(event){
+
+        clickSound.play();
         
         
         selectAns = $(this).text();
@@ -59,21 +61,21 @@ $(document).ready(function() {
     }); 
     function generateLossDueToTimeOut() {
         unansweredPoll++;
-        gameHTML = "<p class='display-4 timer-p'>Time Remaining: <span class='timer'>" + count + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + rightAns[questCount] + "</p>" + "<img class='center-block img-wrong' src='img/x.png'>";
+        gameHTML = "<p class='display-4 timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + rightAns[questCount] + "</p>" + "<img class='center-block img-wrong' src='img/x.png'>";
         $(".midSection").html(gameHTML);
         setTimeout(wait, 4000);  
     }
     
     function generateWin() {
         correctTally++;
-        gameHTML = "<p class='display-4 timer-p'>Time Remaining: <span class='timer'>" + count + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + rightAns[questCount] + "</p>" + imageArr[questCount];
+        gameHTML = "<p class='display-4 timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + rightAns[questCount] + "</p>" + imageArr[questCount];
         $(".midSection").html(gameHTML);
         setTimeout(wait, 4000);  
     }
     
     function generateLoss() {
         incorrectPoll++;
-        gameHTML = "<p class='display-4 timer-p'>Time Remaining: <span class='timer'>" + count + "</span></p>" + "<p class='text-center'>Wrong! The correct answer is: "+ rightAns[questCount] + "</p>" + "<img class='center-block img-wrong' src='img/x.png'>";
+        gameHTML = "<p class='display-4 timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>Wrong! The correct answer is: "+ rightAns[questCount] + "</p>" + "<img class='center-block img-wrong' src='img/x.png'>";
         $(".midSection").html(gameHTML);
         setTimeout(wait, 4000); 
     }
@@ -87,7 +89,7 @@ $(document).ready(function() {
         if (questCount < 7) {
         questCount++;
         generateHTML();
-        count = 30;
+        timer = 30;
         timerWrapper();
         }
         else {
@@ -98,19 +100,19 @@ $(document).ready(function() {
     function timerWrapper() {
         theClock = setInterval(thirtySeconds, 1000);
         function thirtySeconds() {
-            if (count === 0) {
+            if (timer === 0) {
                 clearInterval(theClock);
                 generateLossDueToTimeOut();
             }
-            if (count > 0) {
-                count--;
+            if (timer > 0) {
+                timer--;
             }
             $(".timer").html(count);
         }
     }
     
     function finalScreen() {
-        gameHTML = "<p class='display-4 timer-p'>Time Remaining: <span class='timer'>" + count + "</span></p>" + "<p class='text-center'>All done, here's how you did!" + "</p>" + "<p class='summary-correct'>Correct Answers: " + correctPoll + "</p>" + "<p>Wrong Answers: " + incorrectPoll + "</p>" + "<p>Unanswered: " + unansweredPoll + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-primary btn-lg btn-block reset-button' href='#' role='button'>Reset The Quiz!</a></p>";
+        gameHTML = "<p class='display-4 timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>All done, here's how you did!" + "</p>" + "<p class='summary-correct'>Correct Answers: " + correctPoll + "</p>" + "<p>Wrong Answers: " + incorrectPoll + "</p>" + "<p>Unanswered: " + unansweredPoll + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-primary btn-lg btn-block reset-button' href='#' role='button'>Reset The Quiz!</a></p>";
         $(".midSection").html(gameHTML);
     }
     
@@ -119,7 +121,7 @@ $(document).ready(function() {
         correctPoll = 0;
         incorrectPoll = 0;
         unansweredPoll = 0;
-        count = 30;
+        timer = 30;
         generateHTML();
         timerWrapper();
     }
