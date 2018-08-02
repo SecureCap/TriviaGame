@@ -7,14 +7,14 @@ var imageArr = ["<img src='assets/images/'uttop.png'>","<img src='assets/images/
 var rightAns = ["B. #18th", "A. 1883", "A. 53", "D. 431", "C. 10million","B. 400", "C. 130"];
 var questCount = 0;
 var selectAns;
-var theTimer;
+var theClock;
 var correctPoll = 0;
 var incorrectPoll = 0;
 var unansweredPoll = 0;
 
 
 $(document).ready(function() {
-    // Create a function that creates the start button and initial screen
+    
     
     function initialScreen() {
         startScreen = "<p class='display-4 main-button-container'><a class='btn btn-primary btn-lg btn-block start-button' href='#' role='button'>Start Quiz</a></p>";
@@ -23,37 +23,37 @@ $(document).ready(function() {
     
     initialScreen();
     
-    //Create a function, generateHTML(), that is triggered by the start button, and generates the HTML seen on the project video...
+    
     
     $("body").on("click", ".start-button", function(event){
-        event.preventDefault();  // added line to test issue on GitHub Viewer
+        event.preventDefault();  
         
         generateHTML();
     
         timerWrapper();
     
-    }); // Closes start-button click
+    }); 
     
     $("body").on("click", ".answer", function(event){
-        //answeredQuestion = true;
+        
         
         selectAns = $(this).text();
         if(selectAns === rightAns[questCount]) {
             //alert("correct");
     
-            clearInterval(theTimer);
+            clearInterval(theClock);
             generateWin();
         }
         else {
             //alert("wrong answer!");
-            clearInterval(theTimer);
+            clearInterval(theClock);
             generateLoss();
         }
-    }); // Close .answer click
+    }); 
     
     $("body").on("click", ".reset-button", function(event){
         
-        resetGame();
+        // resetGame();
     }); 
     
     }); 
@@ -96,10 +96,10 @@ $(document).ready(function() {
     }
     
     function timerWrapper() {
-        theTimer = setInterval(thirtySeconds, 1000);
+        theClock = setInterval(thirtySeconds, 1000);
         function thirtySeconds() {
             if (count === 0) {
-                clearInterval(theTimer);
+                clearInterval(theClock);
                 generateLossDueToTimeOut();
             }
             if (count > 0) {
@@ -123,6 +123,8 @@ $(document).ready(function() {
         generateHTML();
         timerWrapper();
     }
+
+    
     
 
 
