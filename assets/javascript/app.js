@@ -3,7 +3,7 @@ var gameHTML;
 var timer = 30;
 var questArr = ["What is UT's rank amongst National Universities?", "What year was The University of Texas founded?","How many national championships have UT won since 1949?","The main campus consist of how many acres?","How many volumes do the UT libraires possess?", "UT offers how many study abroad programs?","How many UT students have won Olympic medals?"];
 var ansArr = [["5th", "18th", "2nd", "20th"],["1883", "1794", "1962", "1833"], ["53", "74", "16", "31"], ["40", "10040", "375", "431"], ["250,000", "124,000", "10million", "3million"], ["800", "400", "1000", "225"], ["25", "150", "130", "75"]];
-var imageArr = ["<img src='assets/images/'uttop.png'>","<img src='assets/images/'utfound.png'>", "<img src='assets/images/'utgold.png'>","<img src='assets/images/'utacre.png'>","<img src='assets/images/'utlib.png'>","<img src='assets/images/'utstudy.png'>","<img src='assets/images/'utgold.png'>"];
+var imageArr = ["<img class='center-block img-right' src='../images/'uttop.png'>","<img class='center-block img-right' src='../images/'utfound.png'>", "<img class='center-block img-right' src='../images/'utgold.png'>","<img class='center-block img-right' src='../images/'utacre.png'>","<img class='center-block img-right'src='../images/'utlib.png'>","<img class='center-block img-right' src='../images/'utstudy.png'>","<img class='center-block img-right' src='../images/'utgold.png'>"];
 var rightAns = ["B. #18th", "A. 1883", "A. 53", "D. 431", "C. 10million","B. 400", "C. 130"];
 var questCount = 0;
 var selectAns;
