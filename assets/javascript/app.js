@@ -107,7 +107,7 @@ $(document).ready(function() {
             if (timer > 0) {
                 timer--;
             }
-            $(".timer").html(count);
+            $(".timer").html(timer);
         }
     }
     
