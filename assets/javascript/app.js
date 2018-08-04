@@ -80,36 +80,74 @@ $(document).ready(function() {
     }); 
     
     $("body").on("click", ".reset-button", function(event){
-        
+        event.preventDefault();  
+       
+        generateHTML();
+    
+        timerWrapper();
         // resetGame();
     }); 
     
     }); 
     function generateLossDueToTimeOut() {
         unansweredPoll++;
-        gameHTML = "<p class='display-4 timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='display-4'>You ran out of time!  The correct answer was: " + rightAns[questCount] + "</p>" + "<img class='center-block img-wrong' src='assets/images/wrong.jpg'>";
+        gameHTML = 
+        "<p class='display-4 timer-p'>Time Remaining: <span class='timer'>" + 
+        timer + 
+        "</span></p>" + 
+        "<p class='display-4'>You ran out of time!  The correct answer was: " + 
+        rightAns[questCount] + 
+        "</p>" +
+         "<img class='center-block img-wrong' src='assets/images/wrong.jpg'>";
         $(".midSection").html(gameHTML);
-        setTimeout(wait, 4000);  
+        setTimeout(wait, 2000);  
     }
     
     function generateWin() {
         correctPoll++;
-        gameHTML = "<p class='display-4 timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='display-4'>Correct! The answer is: " + rightAns[questCount] + "</p>" + imageArr[questCount];
+        gameHTML = 
+        "<p class='display-4 timer-p'>Time Remaining: <span class='timer'>" + 
+        timer + 
+        "</span></p>" + 
+        "<p class='display-4'>Correct! The answer is: " + rightAns[questCount] + 
+        "</p>" + 
+        imageArr[questCount];
         $(".midSection").html(gameHTML);
-        setTimeout(wait, 4000);  
+        setTimeout(wait, 2000);  
     }
     
     function generateLoss() {
         incorrectPoll++;
-        gameHTML = "<p class='display-4 timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='display-4'>Wrong! The correct answer is: "+ rightAns[questCount] + "</p>" + "<img class='center-block img-wrong' src='../images/wrong.jpg'>";
+        gameHTML = 
+        "<p class='display-4 timer-p'>Time Remaining: <span class='timer'>" + 
+        timer + 
+        "</span></p>" + 
+        "<p class='display-4'>Wrong! The correct answer is: "+ 
+        rightAns[questCount] + 
+        "</p>" + 
+        "<img class='center-block img-wrong' src='assets/images/wrong.jpg'>";
         $(".midSection").html(gameHTML);
-        setTimeout(wait, 4000); 
+        setTimeout(wait, 2000); 
     }
     
     function generateHTML() {
-        gameHTML = "<p class='display-4 timer-p'>Time Remaining: <span class='timer'>30</span></p><p class='display-4'>" + questArr[questCount] + "</p><p class='first-answer answer'>A. " + ansArr[questCount][0] + "</p><p class='answer'>B. "+ansArr[questCount][1]+"</p><p class='answer'>C. "+ansArr[questCount][2]+"</p><p class='answer'>D. "+ansArr[questCount][3]+"</p>";
+        if (questCount < 7) {
+        gameHTML = 
+        "<p class='display-4 timer-p'>Time Remaining: <span class='timer'>30</span></p><p class='display-4'>" + questArr[questCount] + 
+        "</p><p class='first-answer answer'>A. " + 
+        ansArr[questCount][0] + 
+        "</p><p class='answer'>B. " +
+        ansArr[questCount][1] +
+        "</p><p class='answer'>C. " +
+        ansArr[questCount][2] +
+        "</p><p class='answer'>D. " + 
+        ansArr[questCount][3] +
+        "</p>";
         $(".midSection").html(gameHTML);
+    } else {
+        finalScreen();
     }
+}
     
     function wait() {
         if (questCount < 7) {
@@ -117,14 +155,14 @@ $(document).ready(function() {
         generateHTML();
         timer = 30;
         timerWrapper();
-        }
-        else {
-            finalScreen();
+        } else {
+        finalScreen();
         }
     }
     
     function timerWrapper() {
-        theClock = setInterval(thirtySeconds, 1000);
+        if (questCount < 7) {
+        theClock = setInterval(thirtySeconds, 3000);
         function thirtySeconds() {
             if (timer === 0) {
                 clearInterval(theClock);
@@ -134,11 +172,23 @@ $(document).ready(function() {
                 timer--;
             }
             $(".timer").html(timer);
+         }
         }
     }
     
     function finalScreen() {
-        gameHTML = "<p class='display-4 timer-p'>Time Remaining: <span class='timer'>" + timer + "</span></p>" + "<p class='text-center'>All done, here's how you did!" + "</p>" + "<p class='summary-correct'>Correct Answers: " + correctPoll + "</p>" + "<p>Wrong Answers: " + incorrectPoll + "</p>" + "<p>Unanswered: " + unansweredPoll + "</p>" + "<p class='display-4 reset-button-container'><a class='btn btn-primary btn-lg btn-block reset-button' href='#' role='button'>Reset The Quiz!</a></p>";
+        gameHTML = 
+         "<p class='text-center'>All done, here's how you did!" + 
+         "</p>" + 
+         "<p class='summary-correct'>Correct Answers: " + correctPoll + 
+         "</p>" + 
+         "<p>Wrong Answers: " + 
+         incorrectPoll + 
+         "</p>" + 
+         "<p>Unanswered: " + 
+         unansweredPoll + 
+         "</p>" + 
+         "<p class='display-4 reset-button-container'><a class='btn btn-primary btn-lg btn-block reset-button' href='#' role='button'>Reset The Quiz!</a></p>";
         $(".midSection").html(gameHTML);
     }
     

@@ -30,11 +30,24 @@ h1 {
       color: #cc5200;
       font-size: 20px;
       float: right;
-      
+    }
+    p.summary-correct {
+      font-family: 'Lobster', cursive;
+      color: #cc5200;
+      font-size: 20px;
+    }
+    p {
+      font-family: 'Lobster', cursive;
+      color: #cc5200;
 
     }
 
     a.btn.btn-primary.btn-lg.btn-block.start-button {
+      background: #cc5200;
+      border-color: #cc5200;
+    }
+
+    a.btn.btn-primary.btn-lg.btn-block.reset-button {
       background: #cc5200;
       border-color: #cc5200;
     }
